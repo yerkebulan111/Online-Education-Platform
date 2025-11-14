@@ -16,7 +16,7 @@ public class UserManager {
     }
 
     public IUser loginUser(String username, String password) {
-        for (IUser user : users) {
+        for (IUser user1 : users) {
             if (user1.getUsername().equals(username) && user1.getPassword().equals(password)) {
                 System.out.println("User logged in successfully");
                 return user1;

@@ -6,7 +6,7 @@ import user.User;
 
 import java.util.ArrayList;
 
-public class UserBuilder implements IUser{
+public class UserBuilder implements IUser {
     private String email;
     private String username;
     private String password;
@@ -24,8 +24,8 @@ public class UserBuilder implements IUser{
         this.password = password;
         return this;
     }
-    public User build(){
-        return new User(email, username, password);
+    public User build() {
+        return new User(email,username,password);
     }
 
     @Override
@@ -41,23 +41,23 @@ public class UserBuilder implements IUser{
         return "";
     }
     @Override
-    public String info(){
+    public String info() {
         return "";
     }
     @Override
-    public void addActiveCourse(ICourse course){
+    public void addActiveCourse(ICourse course) {
 
     }
     @Override
-    public void completeCourse(ICourse course){
+    public void completeCourse(ICourse course) {
 
     }
     @Override
-    public ArrayList<ICourse> getActiveCorses(){
+    public ArrayList<ICourse> getActiveCourses() {
         return null;
     }
     @Override
-    public ArrayList<ICourse> getCompletedCourses(){
+    public ArrayList<ICourse> getCompletedCourses() {
         return null;
     }
 }

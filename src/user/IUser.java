@@ -1,6 +1,6 @@
 package user;
 
-import courses.ICOurse;
+import courses.ICourse;
 import java.util.ArrayList;
 
 public interface IUser {
@@ -11,6 +11,6 @@ public interface IUser {
     void addActiveCourse(ICourse course);
     void completeCourse(ICourse course);
     ArrayList<ICourse> getActiveCourses();
-    ArraList<Icourse> getCompletedCourses();
+    ArrayList<ICourse> getCompletedCourses();
 
 }

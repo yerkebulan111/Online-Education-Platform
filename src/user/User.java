@@ -10,6 +10,7 @@ public class User implements IUser {
 
     private final ArrayList<ICourse> activeCourses = new ArrayList<>();
     private final ArrayList<ICourse> completedCourses = new ArrayList<>();
+    private final ArrayList<String> notifications = new ArrayList<>();
 
     public User(){
 
@@ -53,5 +54,15 @@ public class User implements IUser {
     @Override
     public String info() {
         return "User{username: " + getUsername() + ", email: " + getEmail() + "}";
+    }
+
+    public void getNotification(String message) {
+        notifications.add(message);
+    }
+
+    public void seeNotifications() {
+        for(String notification : notifications) {
+            System.out.println(notification);
+        }
     }
 }

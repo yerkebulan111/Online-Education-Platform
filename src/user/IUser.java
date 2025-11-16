@@ -13,4 +13,5 @@ public interface IUser {
     ArrayList<ICourse> getActiveCourses();
     ArrayList<ICourse> getCompletedCourses();
 
+    void getNotification(String message);
 }

@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class EnglishCourse extends LanguageCourse {
     private final String courseName = "english";
     private double courseProgress;
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private boolean isTestCompleted;
 
     public  EnglishCourse(ICourseLevel courseLevel) {

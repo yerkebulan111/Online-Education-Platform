@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class SpanishCourse extends LanguageCourse {
     private final String courseName = "spanish";
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private boolean isTestCompleted;
 
     public SpanishCourse(ICourseLevel courseLevel) {

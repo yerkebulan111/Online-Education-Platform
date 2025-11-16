@@ -6,7 +6,7 @@ import user.IUser;
 import java.util.ArrayList;
 
 public class StudentPortalFacade {
-    private IUser user;
+    private final IUser user;
 
     public StudentPortalFacade(IUser currentUser) {
         this.user = currentUser;

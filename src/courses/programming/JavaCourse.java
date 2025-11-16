@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class JavaCourse extends ProgrammingCourse {
     private final String courseName = "java";
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private boolean isTestCompleted;
 
     public JavaCourse(ICourseLevel courseLevel) {

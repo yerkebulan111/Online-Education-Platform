@@ -7,22 +7,24 @@ import decorator.*;
 import facade.StudentPortalFacade;
 import factory.*;
 import observer.NotificationService;
+import strategy.*;
 import user.*;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Application {
     private static final Scanner scanner = new Scanner(System.in);
-    private static boolean isLoggedIn = false;
+    private static final boolean isLoggedIn = false;
     private static IUser currentUser;
-    private static UserManager userManager = new UserManager();
+    private static final UserManager userManager = new UserManager();
     private static StudentPortalFacade studentPortal;
     private static ProgressAdapter progressAdapter;
-    private static IUser admin = new Admin("admin", "admin", "admin");
-    private static Teacher teacher = new Teacher("teacher", "teacher", "teacher");
+    private static final IUser admin = new Admin("admin", "admin", "admin");
+    private static final Teacher teacher = new Teacher("teacher", "teacher", "teacher");
     private static Course courseW;
-    private static NotificationService notificationService = new NotificationService();
+    private static final NotificationService notificationService = new NotificationService();
 
 
     public static void start() {
@@ -161,7 +163,8 @@ public class Application {
         System.out.println("1. Enroll in course");
         System.out.println("2. My active courses");
         System.out.println("3. My completed courses");
-        System.out.println("4. Log out");
+        System.out.println("4. Get recommendations");
+        System.out.println("5. Log out");
         System.out.print("Your choice: ");
 
         try {
@@ -172,6 +175,8 @@ public class Application {
                 userActiveCoursesMenu();
             } else if (choice == 3) {
                 userCompletedCoursesMenu();
+            } else if (choice == 4) {
+                recommendationMenu();
             } else {
                 logoutMenu();
             }
@@ -412,6 +417,59 @@ public class Application {
         int choice = scanner.nextInt();
         if (choice == 0) {
             contentMenu();
+        }
+    }
+
+    private static void recommendationMenu() {
+        System.out.println("---------- Recommendations -----------");
+        System.out.println("Choose recommendation type:");
+        System.out.println("1. By History");
+        System.out.println("2. By Activity");
+        System.out.println("3. Go back");
+        System.out.print("Your choice: ");
+
+        try {
+            int choice = scanner.nextInt();
+            RecommendationContext context;
+            
+            if (choice == 1) {
+                RecommendationService historyStrategy = new RecommendByHistory();
+                context = new RecommendationContext(historyStrategy);
+                context.executeRecommendation(currentUser);
+            } else if (choice == 2) {
+                RecommendByActivity activityStrategy = new RecommendByActivity();
+                ArrayList<ICourse> activeCourses = currentUser.getActiveCourses();
+                for (ICourse course : activeCourses) {
+                    String courseName = course.getName();
+                    if (courseName.equals("Algebra")) {
+                        activityStrategy.addActivelyOpened(1);
+                    } else if (courseName.equals("Geometry")) {
+                        activityStrategy.addActivelyOpened(2);
+                    } else if (courseName.equals("Java")) {
+                        activityStrategy.addActivelyOpened(3);
+                    } else if (courseName.equals("Python")) {
+                        activityStrategy.addActivelyOpened(4);
+                    } else if (courseName.equals("English")) {
+                        activityStrategy.addActivelyOpened(5);
+                    } else if (courseName.equals("Spanish")) {
+                        activityStrategy.addActivelyOpened(6);
+                    }
+                }
+                context = new RecommendationContext(activityStrategy);
+                context.executeRecommendation(currentUser);
+            } else {
+                contentMenu();
+                return;
+            }
+            
+            System.out.println();
+            System.out.print("Type '0' to go back to - Content Page: ");
+            int backChoice = scanner.nextInt();
+            if (backChoice == 0) {
+                contentMenu();
+            }
+        } catch (InputMismatchException e) {
+            throw new IllegalArgumentException("Invalid value! Must be an integer.");
         }
     }
 

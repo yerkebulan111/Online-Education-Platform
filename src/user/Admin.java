@@ -59,4 +59,8 @@ public class Admin implements IUser {
         return null;
     }
 
+    @Override
+    public void getNotification(String message) {
+
+    }
 }

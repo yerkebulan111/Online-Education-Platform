@@ -4,11 +4,11 @@ import course_levels.ICourseLevel;
 import courses.ICourse;
 
 public class Course {
-    private String courseName;
-    private String courseLevel;
-    private String module;
-    private boolean quizzed;
-    private ICourse course;
+    private final String courseName;
+    private final String courseLevel;
+    private final String module;
+    private final boolean quizzed;
+    private final ICourse course;
 
     public Course(ICourse course,String courseName, String courseLevel, String module, boolean quizzed) {
         this.course = course;

@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class AlgebraCourse extends MathCourse {
     private final String courseName = "algebra";
     private boolean isTestCompleted = false;
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public AlgebraCourse(ICourseLevel courseLevel) {
         super(courseLevel);

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class GeometryCourse extends MathCourse {
     private final String courseName = "geometry";
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private boolean isTestCompleted;
 
     public GeometryCourse(ICourseLevel courseLevel) {

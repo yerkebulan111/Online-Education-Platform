@@ -1,7 +1,6 @@
 package observer;
 
 import user.IUser;
-import user.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,7 @@ public class NotificationService {
         }
     }
 
-    public List<User> getReceivers() {
+    public List<IUser> getReceivers() {
         return receivers;
     }
 }

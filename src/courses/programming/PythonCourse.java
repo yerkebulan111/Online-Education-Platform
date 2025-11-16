@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class PythonCourse extends ProgrammingCourse{
     private final String courseName = "python";
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private boolean isTestCompleted;
 
     public PythonCourse(ICourseLevel courseLevel) {

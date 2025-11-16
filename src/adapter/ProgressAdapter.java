@@ -3,7 +3,7 @@ package adapter;
 import user.IUser;
 
 public class ProgressAdapter {
-    private IUser user;
+    private final IUser user;
 
     public ProgressAdapter(IUser currentUser) {
         this.user = currentUser;

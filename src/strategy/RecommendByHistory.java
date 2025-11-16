@@ -1,28 +1,27 @@
 package strategy;
 
 import courses.ICourse;
+import user.IUser;
 
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class RecommendByHistory implements RecommendationService {
-    private List<String> courses;
-    private List<ICourse> history = new ArrayList<>();
-
-    public void addToHistory(ICourse course) {
-        if (!history.contains(course)) {
-            history.add(course);
-        }
-    }
-
     @Override
-    public void recommendCourses() {
+    public void recommendCourses(IUser user) {
         System.out.println("Courses that you have ever enrolled:");
-        for (ICourse course : history) {
-            System.out.println( course.getName() );
+        ArrayList<ICourse> completedCourses = user.getCompletedCourses();
+        ArrayList<ICourse> activeCourses = user.getActiveCourses();
+        
+        if (completedCourses.isEmpty() && activeCourses.isEmpty()) {
+            System.out.println("No courses found.");
+            return;
+        }
+        
+        for (ICourse course : completedCourses) {
+            System.out.println(course.getName());
+        }
+        for (ICourse course : activeCourses) {
+            System.out.println(course.getName());
         }
     }
-
-
 }

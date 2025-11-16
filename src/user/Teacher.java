@@ -5,9 +5,9 @@ import courses.ICourse;
 import java.util.ArrayList;
 
 public class Teacher implements IUser{
-    private String email;
-    private String username;
-    private String password;
+    private final String email;
+    private final String username;
+    private final String password;
 
     public Teacher(String username, String password, String email) {
         this.username = username;

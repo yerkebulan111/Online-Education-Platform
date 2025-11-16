@@ -9,7 +9,7 @@ public class RecommendByActivity implements RecommendationService {
     
     @Override
     public void recommendCourses(IUser user) {
-        System.out.println("=== Recommendations Based on Your Activity ===");
+        System.out.println("--- Recommendations Based on Your Activity ---");
         
         ArrayList<ICourse> activeCourses = user.getActiveCourses();
         
@@ -21,26 +21,26 @@ public class RecommendByActivity implements RecommendationService {
         
         System.out.println("Based on your current activity, we recommend:");
         
-        // Get courses that user is actively working on
+
         for (ICourse course : activeCourses) {
             String courseName = course.getName();
             String level = course.getCourseLevel();
             
             System.out.println("- Continue with: " + courseName + " (" + level + ")");
             
-            // Recommend related courses based on what they're studying
+
             if (courseName.contains("Algebra")) {
-                System.out.println("  → Try Geometry next!");
+                System.out.println("Try Geometry next!");
             } else if (courseName.contains("Geometry")) {
-                System.out.println("  → Try Algebra or advanced Math courses!");
+                System.out.println("Try Algebra or advanced Math courses!");
             } else if (courseName.contains("Java")) {
-                System.out.println("  → Try Python to learn another programming language!");
+                System.out.println("Try Python to learn another programming language!");
             } else if (courseName.contains("Python")) {
-                System.out.println("  → Try Java to learn object-oriented programming!");
+                System.out.println("Try Java to learn object-oriented programming!");
             } else if (courseName.contains("English")) {
-                System.out.println("  → Try Spanish to learn another language!");
+                System.out.println("Try Spanish to learn another language!");
             } else if (courseName.contains("Spanish")) {
-                System.out.println("  → Try English or other language courses!");
+                System.out.println("Try English or other language courses!");
             }
         }
     }

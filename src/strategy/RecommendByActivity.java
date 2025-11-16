@@ -4,49 +4,43 @@ import courses.ICourse;
 import user.IUser;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class RecommendByActivity implements RecommendationService {
-    private final Set<Integer> activelyOpened = new HashSet<>();
-
-    public void addActivelyOpened(int number) {
-        activelyOpened.add(number);
-    }
-
+    
     @Override
     public void recommendCourses(IUser user) {
-        ArrayList<String> courses = new ArrayList<>();
+        System.out.println("=== Recommendations Based on Your Activity ===");
         
-        for (Integer number : activelyOpened) {
-            switch (number) {
-                case 1:
-                    courses.add("Algebra");
-                    break;
-                case 2:
-                    courses.add("Geometry");
-                    break;
-                case 3:
-                    courses.add("Java");
-                    break;
-                case 4:
-                    courses.add("Python");
-                    break;
-                case 5:
-                    courses.add("English");
-                    break;
-                case 6:
-                    courses.add("Spanish");
-                    break;
-            }
+        ArrayList<ICourse> activeCourses = user.getActiveCourses();
+        
+        if (activeCourses.isEmpty()) {
+            System.out.println("You don't have any active courses yet.");
+            System.out.println("We recommend starting with beginner courses!");
+            return;
         }
         
-        System.out.println("Courses that you have ever opened:");
-        if (courses.isEmpty()) {
-            System.out.println("No courses found.");
-        } else {
-            for (String course : courses) {
-                System.out.println(course);
+        System.out.println("Based on your current activity, we recommend:");
+        
+        // Get courses that user is actively working on
+        for (ICourse course : activeCourses) {
+            String courseName = course.getName();
+            String level = course.getCourseLevel();
+            
+            System.out.println("- Continue with: " + courseName + " (" + level + ")");
+            
+            // Recommend related courses based on what they're studying
+            if (courseName.contains("Algebra")) {
+                System.out.println("  → Try Geometry next!");
+            } else if (courseName.contains("Geometry")) {
+                System.out.println("  → Try Algebra or advanced Math courses!");
+            } else if (courseName.contains("Java")) {
+                System.out.println("  → Try Python to learn another programming language!");
+            } else if (courseName.contains("Python")) {
+                System.out.println("  → Try Java to learn object-oriented programming!");
+            } else if (courseName.contains("English")) {
+                System.out.println("  → Try Spanish to learn another language!");
+            } else if (courseName.contains("Spanish")) {
+                System.out.println("  → Try English or other language courses!");
             }
         }
     }

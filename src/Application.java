@@ -437,24 +437,7 @@ public class Application {
                 context = new RecommendationContext(historyStrategy);
                 context.executeRecommendation(currentUser);
             } else if (choice == 2) {
-                RecommendByActivity activityStrategy = new RecommendByActivity();
-                ArrayList<ICourse> activeCourses = currentUser.getActiveCourses();
-                for (ICourse course : activeCourses) {
-                    String courseName = course.getName();
-                    if (courseName.equals("Algebra")) {
-                        activityStrategy.addActivelyOpened(1);
-                    } else if (courseName.equals("Geometry")) {
-                        activityStrategy.addActivelyOpened(2);
-                    } else if (courseName.equals("Java")) {
-                        activityStrategy.addActivelyOpened(3);
-                    } else if (courseName.equals("Python")) {
-                        activityStrategy.addActivelyOpened(4);
-                    } else if (courseName.equals("English")) {
-                        activityStrategy.addActivelyOpened(5);
-                    } else if (courseName.equals("Spanish")) {
-                        activityStrategy.addActivelyOpened(6);
-                    }
-                }
+                RecommendationService activityStrategy = new RecommendByActivity();
                 context = new RecommendationContext(activityStrategy);
                 context.executeRecommendation(currentUser);
             } else {
